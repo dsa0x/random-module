@@ -13,7 +13,7 @@ resource "random_bytes" "jwt_secret" {
 
 resource "random_string" "random" {
   keepers = {
-    jwt_secret_length = uuid()
+    jwt_secret_length = 13
   }
 
   length           = resource.random_bytes.jwt_secret.length
