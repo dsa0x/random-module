@@ -12,6 +12,10 @@ resource "random_bytes" "jwt_secret" {
 }
 
 resource "random_string" "random" {
+  keepers = {
+    jwt_secret_length = uuid()
+  }
+
   length           = resource.random_bytes.jwt_secret.length
   special          = true
   override_special = "/@£$"

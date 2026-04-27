@@ -1,7 +1,6 @@
 resource_policy "*" "enforce_length" {
   filter = meta.type == "random_string"
   locals {
-    tmp = 15
     # bytes = core::getresources("random_bytes", {})
   }
   enforce {
