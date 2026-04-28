@@ -7,24 +7,12 @@ terraform {
   }
 }
 
-resource "random_bytes" "jwt_secret" {
-  length = 16
-}
-
 resource "random_string" "random" {
   keepers = {
-    jwt_secret_length = 14
+    jwt_secret_length = 12
   }
 
-  length           = resource.random_bytes.jwt_secret.length
+  length           = 12
   special          = true
   override_special = "/@£$"
-}
-
-module "child" {
-  source = "./modules"
-
-  providers = {
-    random = random
-  }
 }

@@ -10,3 +10,11 @@ resource_policy "*" "enforce_length" {
     info_message = "this is a policy for random_string length enforcement"
   }
 }
+
+module_policy "./modules" "source_check" {
+  enforce {
+    condition     = core::try(attrs.source, "") != "some/other/source"
+    error_message = "Module source cannot be some/other/source"
+    info_message  = "This is a policy to check module source"
+  }
+}
